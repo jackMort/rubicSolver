@@ -1,12 +1,20 @@
-// 000
-// 000
-// 000
-// 222333444555
-// 222333444555
-// 222333444555
-// 111
-// 111
-// 111
+/**
+ * rubicSolver.c
+ * Copyright (C) 2009  lech.twarog@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,10 +52,10 @@ void spin_cube( CUBE *cube, char direction )
 
 	switch( direction ) {
 		case 'L'://L
-			
-		break;
+
+			break;
 		case 'l':// Li
-		break;
+			break;
 	}
 }
 
@@ -55,7 +63,7 @@ void print_cube( CUBE cube )
 {
 	int i, j, y;
 	int w = cube.width;
-	
+
 	// UP
 	for( i = 0; i < w; i++ )
 	{
@@ -87,6 +95,6 @@ void print_cube( CUBE cube )
 		}
 		printf( "\n" );
 	}
-	
+
 }
 // vim: fdm=marker ts=4 sw=4 sts=4
