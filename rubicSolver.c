@@ -45,17 +45,17 @@ void init_cube( CUBE *cube, int w )
 	cube->sides = sides;
 }
 
-void spin_cube( CUBE *cube, char direction )
+void spin_cube( CUBE *cube, int direction )
 {
 	//int i, j, y;
 	//int w = cube.width;
 
 	switch( direction ) {
-		case 'L'://L
-
-			break;
-		case 'l':// Li
-			break;
+		case SPIN_L: break;
+					 // ..
+					 // ..
+					 // ..					
+		default: printf( "Coś mi tu kurwa nie gra  ..." );
 	}
 }
 

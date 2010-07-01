@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall
+CFLAGS=-Wall -lncurses
 OBJS=rubicSolver.o main.o
 
 rubicSolver: $(OBJS)

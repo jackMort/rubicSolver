@@ -19,7 +19,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include <ncurses.h>
 #include "rubicSolver.h"
+#include "main.h"
 
 void usage()
 {
@@ -27,6 +29,7 @@ void usage()
 }
 //----
 
+WINDOW *main_win;
 CUBE cube;
 struct option long_options[] = {
 	{ "help", no_argument, 0, 'h' }
@@ -34,6 +37,8 @@ struct option long_options[] = {
 
 int main( int argc, char *argv[] ) 
 {
+	// screen resolution
+	int row, col;
 	int c, i;
 	while( ( c = getopt_long( argc, argv, "h", long_options, &i) ) != -1 )
 	{
@@ -43,17 +48,58 @@ int main( int argc, char *argv[] )
 				usage(); exit( 0 );
 		}
 	}
+	
+	// init ncurses
+	initscr();
+	start_color();
+	// side colors
+	init_pair( 1, COLOR_RED, COLOR_BLACK );
+	
+	cbreak();
+	
+	getmaxyx( stdscr, row, col );
 
-	// init new cube
-	init_cube( &cube, 3 );
-	// print cube
-	print_cube( cube );
-	// spin left
-	spin_cube( &cube, 'L' );
-	// print cube
-	print_cube( cube );
+	printw( "Rubic Solver ", main_win );
+	refresh();
+	
+	init_cube( &cube, 4 );
+	cube_to_ncurses( cube, 3, 3 );
 
+	//refresh();
+	getch();
+	endwin();
 	//..
 	return 0;
 }
+
+void cube_to_ncurses( CUBE cube, int x, int y ) 
+{
+	int i;
+	int w = cube.width;
+	for( i = 0; i < w; i++ )
+	{
+		create_side( 1, w, y + i, x + w );
+		create_side( 1, w, y + w + i, x );
+		create_side( 1, w, y + w + w + i, x + w );
+
+		create_side( 1, w, y + w + i, x + w );
+		create_side( 1, w, y + w + i, x + w + w );
+		create_side( 1, w, y + w + i, x + w + w + w );
+	}
+}
+
+WINDOW *create_side( int h, int w, int y, int x ) 
+{
+	WINDOW *win;
+	attron( COLOR_PAIR( 1 ) );
+	
+	win = newwin( h, w, y, x );	
+	wborder( win, '#', '#', '#', '#', '#', '#', '#', '#' );
+	wrefresh( win );
+	
+	attroff( COLOR_PAIR( 1 ) );
+
+	return win;
+}
+
 // vim: fdm=marker ts=4 sts=4 sw=4

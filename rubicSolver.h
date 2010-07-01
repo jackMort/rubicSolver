@@ -27,14 +27,28 @@
 #define CUBE_REAR      4
 #define CUBE_LEFT      5
 
+#define SPIN_L         100
+#define SPIN_Li        101
+#define SPIN_R         102
+#define SPIN_Ri        103
+#define SPIN_U         104
+#define SPIN_Ui        105
+#define SPIN_D         106
+#define SPIN_Di        107
+
+#define MOVE_LEFT      108
+#define MOVE_RIGHT     109
+#define MOVE_UP        110
+#define MOVE_DOWN      111
+
 typedef struct {
 	int width;
 	// 
 	int ***sides;
 } CUBE;
 
-void move_cube( CUBE *cube, char direction );
-void spin_cube( CUBE *cube, char direction );
+void move_cube( CUBE *cube, int direction );
+void spin_cube( CUBE *cube, int direction );
 void init_cube( CUBE *cube, int w );
 //
 void print_cube( CUBE cube );
